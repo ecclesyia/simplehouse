@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SimpleHouse - User Login">
+  <title>SimpleHouse - Login</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Notification Dropdown -->
+  <div class="notif-dropdown" id="notif-dropdown">
+    <div class="notif-dropdown__header">
+      <span>Notifications</span>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <span class="notif-dropdown__mark" id="notif-mark-read">Mark all read</span>
+        <button class="notif-dropdown__close" id="notif-close">×</button>
+      </div>
+    </div>
+    <div class="notif-list" id="notif-list">
+      <div class="notif-empty">No notifications yet.</div>
+    </div>
+  </div>
+
+  <!-- Message Slide Panel -->
+  <div class="slide-panel-overlay" id="msg-overlay"></div>
+  <div class="slide-panel" id="msg-panel">
+    <div class="slide-panel__header">
+      <span class="slide-panel__title">Messages</span>
+      <button class="slide-panel__close" id="msg-close">×</button>
+    </div>
+    <!-- User sees their thread directly -->
+    <div class="chat-thread" id="chat-thread"></div>
+    <div class="chat-input-row">
+      <textarea class="chat-input" id="chat-input" rows="1" placeholder="Message Admin..."></textarea>
+      <button class="chat-send-btn" id="chat-send">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M2 21L23 12 2 3v7l15 2-15 2v7z" fill="white"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="auth-page" id="user-login-page">
+    <div class="auth-card">
+      <!-- Mirrored: form-left, logo-right -->
+      <div class="auth-card__inner auth-card__inner--mirrored">
+        <!-- Gradient + Logo (visually on RIGHT) -->
+        <div class="auth-card__left auth-card__left--user">
+          <!-- Cloud ellipses -->
+          <div class="auth-clouds">
+            <div class="auth-cloud auth-cloud--1"></div>
+            <div class="auth-cloud auth-cloud--2"></div>
+            <div class="auth-cloud auth-cloud--3"></div>
+            <div class="auth-cloud auth-cloud--4"></div>
+          </div>
+          <div class="auth-logo-wrapper">
+            <div class="auth-logo">
+              <svg width="269" height="269" viewBox="0 0 269 269" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M258.557 192.913L172.371 182.642L162.1 268.828L75.9146 258.557L86.1856 172.371L7.42699e-06 162.1L10.271 75.9146L96.4566 86.1856L106.728 -3.71349e-06L192.913 10.271L182.642 96.4566L268.828 106.728" fill="url(#paint0_login_user)"/>
+                <defs>
+                  <linearGradient id="paint0_login_user" x1="149.82" y1="5.13551" x2="119.007" y2="263.692" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#385493"/>
+                    <stop offset="1" stop-color="white"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- White Form Panel (visually on LEFT) -->
+        <div class="auth-card__right">
+          <div class="auth-form">
+            <h1 class="auth-header">Welcome Back!</h1>
+
+            <form id="login-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-input" type="email" id="email" name="email" placeholder="Enter email" required>
+                <span class="error-text" style="display:none;">Email is required</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-input" type="password" id="password" name="password" placeholder="Enter password" required>
+                <span class="error-text" style="display:none;">Password is required</span>
+              </div>
+
+              <div class="checkbox-group">
+                <input class="checkbox" type="checkbox" id="terms" name="terms" required>
+                <label for="terms" class="text-h12-light" style="color: #908DA5;">I agree to the terms and conditions</label>
+              </div>
+
+              <button type="submit" class="btn btn--primary" id="btn-login">Login</button>
+            </form>
+
+            <div class="auth-switch">
+              <span>Don't have an account? </span><a href="register.html" class="auth-switch__link">Register</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/script.js"></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!validateForm(this)) return;
+      const terms = document.getElementById('terms');
+      if (!terms.checked) { alert('Please agree to the terms and conditions'); return; }
+
+      const userData = {
+        email: document.getElementById('email').value,
+        fullname: document.getElementById('email').value.split('@')[0],
+        phone: '08XX-XXXX-XXXX',
+        role: 'user'
+      };
+      setCurrentUser(userData);
+      navigateTo('dashboard.html');
+    });
+  </script>
+</body>
+</html>

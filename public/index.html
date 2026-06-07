@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SimpleHouse - Hospital Queue Management System">
+  <title>SimpleHouse</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .landing {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--color-background-alt) 0%, var(--color-background) 50%, var(--color-surface-alt) 100%);
+      gap: 20px;
+    }
+    .landing__logo {
+      width: 160px;
+      height: 160px;
+      margin-bottom: 10px;
+    }
+    .landing__title {
+      font-family: var(--font-tertiary);
+      font-size: 54px;
+      font-weight: 600;
+      color: var(--color-accent);
+      letter-spacing: -0.02em;
+    }
+    .landing__subtitle {
+      font-size: 25px;
+      font-weight: 300;
+      color: var(--color-text-tertiary);
+      margin-bottom: 20px;
+    }
+    .landing__buttons {
+      display: flex;
+      gap: 24px;
+    }
+    .landing__btn {
+      width: 220px;
+      height: 56px;
+      border-radius: var(--radius-lg-6);
+      font-size: 20px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .landing__btn--user {
+      background-color: var(--color-accent);
+      color: #fff;
+    }
+    .landing__btn--user:hover {
+      background-color: var(--color-accent-9);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(70, 101, 171, 0.35);
+    }
+    .landing__btn--admin {
+      background-color: var(--color-accent-6);
+      color: #fff;
+    }
+    .landing__btn--admin:hover {
+      background-color: var(--color-accent-12);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(197, 57, 57, 0.35);
+    }
+  </style>
+</head>
+<body>
+  <div class="landing" id="landing-page">
+    <div class="landing__logo">
+      <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M130 30L30 110V230H100V170H160V230H230V110L130 30Z" fill="#4665ab" fill-opacity="0.15"/>
+        <path d="M130 30L30 110V230H100V170H160V230H230V110L130 30Z" stroke="#4665ab" stroke-width="6" stroke-linejoin="round"/>
+        <rect x="110" y="80" width="40" height="40" rx="4" fill="#4665ab" fill-opacity="0.2" stroke="#4665ab" stroke-width="3"/>
+        <line x1="130" y1="85" x2="130" y2="115" stroke="#4665ab" stroke-width="2.5"/>
+        <line x1="115" y1="100" x2="145" y2="100" stroke="#4665ab" stroke-width="2.5"/>
+      </svg>
+    </div>
+    <h1 class="landing__title">SimpleHouse</h1>
+    <p class="landing__subtitle">Hospital Queue Management System</p>
+    <div class="landing__buttons">
+      <a href="user/login.html" class="landing__btn landing__btn--user" id="btn-user-login">User Login</a>
+      <a href="admin/login.html" class="landing__btn landing__btn--admin" id="btn-admin-login">Admin Login</a>
+    </div>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>

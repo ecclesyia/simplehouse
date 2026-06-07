@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SimpleHouse - User Messages">
+  <title>SimpleHouse - Messages</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <!-- Notification Dropdown -->
+  <div class="notif-dropdown" id="notif-dropdown">
+    <div class="notif-dropdown__header">
+      <span>Notifications</span>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <span class="notif-dropdown__mark" id="notif-mark-read">Mark all read</span>
+        <button class="notif-dropdown__close" id="notif-close">×</button>
+      </div>
+    </div>
+    <div class="notif-list" id="notif-list">
+      <div class="notif-empty">No notifications yet.</div>
+    </div>
+  </div>
+
+  <!-- Message Slide Panel -->
+  <div class="slide-panel-overlay" id="msg-overlay"></div>
+  <div class="slide-panel" id="msg-panel">
+    <div class="slide-panel__header">
+      <span class="slide-panel__title">Messages</span>
+      <button class="slide-panel__close" id="msg-close">×</button>
+    </div>
+    <!-- User sees their thread directly -->
+    <div class="chat-thread" id="chat-thread"></div>
+    <div class="chat-input-row">
+      <textarea class="chat-input" id="chat-input" rows="1" placeholder="Message Admin..."></textarea>
+      <button class="chat-send-btn" id="chat-send">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M2 21L23 12 2 3v7l15 2-15 2v7z" fill="white"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="page" id="user-messages-page">
+    <!-- Sidebar -->
+    <aside class="sidebar sidebar--user">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo__icon">
+          <svg width="66" height="68" viewBox="0 0 66 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M62.9155 47.5062L42.6847 45.0952L40.2737 65.3261L20.0428 62.9151L22.4538 42.6842L2.22296 40.2732L4.63394 20.0424L24.8648 22.4534L27.2758 2.2225L47.5066 4.63348L45.0957 24.8643L65.3265 27.2753"
+              fill="url(#sidebarLogo)" stroke="white" stroke-width="2" />
+            <defs>
+              <linearGradient id="sidebarLogo" x1="37.39" y1="3.43" x2="30.16" y2="64.12"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#385493" />
+                <stop offset="1" stop-color="white" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="sidebar-logo__text">SimpleHouse</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-btn" id="nav-dashboard">
+          <div class="sidebar-btn__inner">
+            <svg class="sidebar-btn__icon" viewBox="0 0 25 25" fill="none">
+              <path
+                d="M12.5 12.5H22.917V2.083H12.5V12.5ZM0 25H10.417V14.583H0V25ZM0 12.5H10.417V2.083H0V12.5ZM12.5 25H22.917V14.583H12.5V25Z"
+                fill="white" />
+            </svg>
+            <span class="sidebar-btn__text">Dashboard</span>
+          </div>
+        </a>
+        <a href="make-queue.html" class="sidebar-btn" id="nav-make-queue">
+          <div class="sidebar-btn__inner">
+            <svg class="sidebar-btn__icon" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H8V4H20V16ZM13 15H15V11H19V9H15V5H13V9H9V11H13V15Z"
+                fill="white" />
+            </svg>
+            <span class="sidebar-btn__text">Make Queue</span>
+          </div>
+        </a>
+        <a href="log.html" class="sidebar-btn" id="nav-log">
+          <div class="sidebar-btn__inner">
+            <svg class="sidebar-btn__icon" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M6.25 10.31c0-.25.1-.49.27-.66.18-.18.41-.27.66-.27h5c.25 0 .49.1.66.27.18.18.27.41.27.66 0 .25-.1.49-.27.66-.18.18-.41.27-.66.27h-5c-.25 0-.49-.1-.66-.27a.94.94 0 01-.27-.66zM5 13.13c-.25 0-.49.1-.66.27-.18.18-.27.41-.27.66 0 .25.1.49.27.66.18.18.41.27.66.27h5c.25 0 .49-.1.66-.27.18-.18.27-.41.27-.66 0-.25-.1-.49-.27-.66a.94.94 0 00-.66-.27H5z"
+                fill="white" />
+              <path
+                d="M16.25 0C18.32 0 20 1.65 20 3.74c0 1.23-.42 2.42-.98 3.52-.55 1.1-1.28 2.2-1.98 3.24l-.01.02c-.71 1.07-1.38 2.07-1.88 3.06-.5.99-.78 1.87-.78 2.67 0 .32.08.64.24.92.16.28.39.52.67.69.28.17.59.26.92.27.32.01.64-.07.93-.22.28-.15.52-.38.69-.65.17-.27.27-.59.29-.91.01-.32-.05-.64-.2-.93a1.88 1.88 0 00-.63-.72 1.25 1.25 0 01.38-2.17c.24-.08.5-.07.73.05.67.39 1.18 1.04 1.45 1.81.27.76.29 1.59.06 2.36a3.75 3.75 0 01-1.35 1.92 3.73 3.73 0 01-2.23.74H3.75A3.75 3.75 0 010 16.25c0-1.98 1.11-3.92 2.22-5.63.26-.4.52-.8.78-1.19.59-.89 1.15-1.73 1.61-2.56H3.14c-.72 0-1.73-.17-2.38-.98A3.73 3.73 0 010 3.74 3.75 3.75 0 013.75 0h12.5z"
+                fill="white" />
+            </svg>
+            <span class="sidebar-btn__text">Log</span>
+          </div>
+        </a>
+        <button class="sidebar-logout" id="btn-logout" onclick="clearCurrentUser(); navigateTo('login.html');">
+          <div class="sidebar-logout__inner">
+            <svg class="sidebar-btn__icon" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M14.14 1.95a1.25 1.25 0 011.39-.28c1.37.91 2.5 2.15 3.28 3.6A10 10 0 0110 20 10 10 0 014.47 1.67a1.25 1.25 0 012.11 1.34A7.99 7.99 0 1014.42 3.33a1.25 1.25 0 01-.28-1.39zM10 0c.24 0 .48.09.66.25.18.16.3.39.33.63L11 1v10a1 1 0 01-2 .12L9 11V1a1 1 0 011-1z"
+                fill="#2563EB" />
+            </svg>
+            <span class="sidebar-btn__text" style="color:#2563EB;font-weight:700;font-size:33px;">Log Out</span>
+          </div>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-icons">
+        <a href="#" class="header-icon" id="icon-notification">
+          <svg viewBox="0 0 58 58" fill="none">
+            <path
+              d="M52 35L47.13 30.06V23.56a18.12 18.12 0 00-16.31-18.03V1.81h-3.63v3.72a18.12 18.12 0 00-16.31 18.03v6.5L5.97 35a1.81 1.81 0 00-.53 1.28v5.44c0 .48.19.94.53 1.28.34.34.8.53 1.28.53h12.69v1.41a7.25 7.25 0 0014.12 0V43.5h12.69c.48 0 .94-.19 1.28-.53.34-.34.53-.8.53-1.28v-5.44c0-.48-.19-.94-.53-1.28zM34.44 45.31a5.44 5.44 0 01-10.88 0V43.5h10.88v1.81zM48.94 39.88H9.06v-2.87l4.91-4.91a1.81 1.81 0 00.53-1.28v-7.25a14.5 14.5 0 0129 0v7.25c0 .48.19.94.53 1.28l4.91 4.91v2.87z"
+              fill="white" />
+          </svg>
+          <div class="header-icon__badge"></div>
+        </a>
+        <a href="#" class="header-icon" id="icon-messages">
+          <svg viewBox="0 0 55 55" fill="none">
+            <path
+              d="M17.81 45.72a20.63 20.63 0 009.69 2.41c11.39 0 20.63-9.23 20.63-20.63S38.89 6.88 27.5 6.88 6.88 16.11 6.88 27.5c0 3.51.87 6.8 2.41 9.69.36.67.44 1.46.23 2.19l-2.42 8.52 8.52-2.42c.73-.21 1.52-.13 2.19.23zM27.5 51.07a23.57 23.57 0 01-11.07-2.76l-9.37 2.67a2.95 2.95 0 01-3.63-3.63l2.67-9.37A23.57 23.57 0 013.93 27.5C3.93 14.48 14.48 3.93 27.5 3.93S51.07 14.48 51.07 27.5 40.52 51.07 27.5 51.07zM18.66 23.08c0-.39.16-.77.43-1.04a1.47 1.47 0 012.08 0l13.69.01c.39 0 .77.16 1.04.43.27.27.43.64.43 1.04 0 .39-.16.77-.43 1.04-.27.27-.64.43-1.04.43H20.13c-.39 0-.77-.16-1.04-.43a1.47 1.47 0 01-.43-1.04zm0 8.84c0-.39.16-.77.43-1.04.27-.28.64-.43 1.04-.43h8.84c.39 0 .77.16 1.04.43.27.28.43.64.43 1.04 0 .39-.16.77-.43 1.04-.27.28-.64.43-1.04.43h-8.84c-.39 0-.77-.16-1.04-.43a1.47 1.47 0 01-.43-1.04z"
+              fill="white" />
+          </svg>
+          <div class="header-icon__badge"></div>
+        </a>
+      </div>
+      <div class="header-profile">
+        <svg class="profile-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M37.3327 21.0003C37.3327 23.4757 36.3494 25.8496 34.599 27.6C32.8487 29.3503 30.4747 30.3337 27.9993 30.3337C25.524 30.3337 23.15 29.3503 21.3997 27.6C19.6493 25.8496 18.666 23.4757 18.666 21.0003C18.666 18.525 19.6493 16.151 21.3997 14.4007C23.15 12.6503 25.524 11.667 27.9993 11.667C30.4747 11.667 32.8487 12.6503 34.599 14.4007C36.3494 16.151 37.3327 18.525 37.3327 21.0003ZM32.666 21.0003C32.666 22.238 32.1743 23.425 31.2992 24.3002C30.424 25.1753 29.237 25.667 27.9993 25.667C26.7617 25.667 25.5747 25.1753 24.6995 24.3002C23.8243 23.425 23.3327 22.238 23.3327 21.0003C23.3327 19.7626 23.8243 18.5757 24.6995 17.7005C25.5747 16.8253 26.7617 16.3337 27.9993 16.3337C29.237 16.3337 30.424 16.8253 31.2992 17.7005C32.1743 18.5757 32.666 19.7626 32.666 21.0003Z"
+            fill="white" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M27.9997 2.3335C13.8247 2.3335 2.33301 13.8252 2.33301 28.0002C2.33301 42.1752 13.8247 53.6668 27.9997 53.6668C42.1747 53.6668 53.6663 42.1752 53.6663 28.0002C53.6663 13.8252 42.1747 2.3335 27.9997 2.3335ZM6.99967 28.0002C6.99967 32.8768 8.66334 37.3662 11.4517 40.9315C13.4104 38.3605 15.9367 36.2768 18.8335 34.8432C21.7303 33.4096 24.9192 32.6647 28.1513 32.6668C31.3419 32.6631 34.4912 33.388 37.359 34.7864C40.2268 36.1847 42.7374 38.2195 44.6993 40.7355C46.7211 38.0839 48.0823 34.989 48.6704 31.7069C49.2586 28.4247 49.0567 25.0497 48.0815 21.8611C47.1063 18.6725 45.3859 15.7619 43.0625 13.3702C40.7391 10.9786 37.8796 9.1745 34.7206 8.10735C31.5615 7.0402 28.1938 6.74063 24.896 7.23343C21.5982 7.72624 18.4652 8.99724 15.7561 10.9413C13.0471 12.8853 10.8399 15.4465 9.31721 18.413C7.79452 21.3794 7.0001 24.6658 6.99967 28.0002ZM27.9997 49.0002C23.1788 49.008 18.5033 47.3495 14.765 44.3055C16.2696 42.1509 18.2725 40.3918 20.6032 39.1779C22.9339 37.964 25.5234 37.3312 28.1513 37.3335C30.7464 37.3312 33.3046 37.9482 35.6133 39.1332C37.922 40.3182 39.9147 42.037 41.4257 44.1468C37.6584 47.2898 32.9058 49.0078 27.9997 49.0002Z"
+            fill="white" />
+        </svg>
+        <div class="profile-info">
+          <span class="profile-info__name" id="profile-name">User</span>
+          <span class="profile-info__email" id="profile-email">user@email.com</span>
+          <span class="profile-info__phone" id="profile-phone">08XX-XXXX-XXXX</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="messages-container" id="messages-list">
+        <!-- Messages will be populated by script -->
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/script.js"></script>
+  <script>
+    navigateTo('dashboard.html');
+    // Check user session
+    const user = getCurrentUser();
+    if (!user || user.role !== 'user') { navigateTo('login.html'); }
+    else {
+      document.getElementById('profile-name').textContent = user.fullname || 'User';
+      document.getElementById('profile-email').textContent = user.email || '';
+      document.getElementById('profile-phone').textContent = user.phone || '';
+    }
+
+    const profileIconSVG = `<svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M37.3327 21.0003C37.3327 23.4757 36.3494 25.8496 34.599 27.6C32.8487 29.3503 30.4747 30.3337 27.9993 30.3337C25.524 30.3337 23.15 29.3503 21.3997 27.6C19.6493 25.8496 18.666 23.4757 18.666 21.0003C18.666 18.525 19.6493 16.151 21.3997 14.4007C23.15 12.6503 25.524 11.667 27.9993 11.667C30.4747 11.667 32.8487 12.6503 34.599 14.4007C36.3494 16.151 37.3327 18.525 37.3327 21.0003ZM32.666 21.0003C32.666 22.238 32.1743 23.425 31.2992 24.3002C30.424 25.1753 29.237 25.667 27.9993 25.667C26.7617 25.667 25.5747 25.1753 24.6995 24.3002C23.8243 23.425 23.3327 22.238 23.3327 21.0003C23.3327 19.7626 23.8243 18.5757 24.6995 17.7005C25.5747 16.8253 26.7617 16.3337 27.9993 16.3337C29.237 16.3337 30.424 16.8253 31.2992 17.7005C32.1743 18.5757 32.666 19.7626 32.666 21.0003Z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M27.9997 2.3335C13.8247 2.3335 2.33301 13.8252 2.33301 28.0002C2.33301 42.1752 13.8247 53.6668 27.9997 53.6668C42.1747 53.6668 53.6663 42.1752 53.6663 28.0002C53.6663 13.8252 42.1747 2.3335 27.9997 2.3335ZM6.99967 28.0002C6.99967 32.8768 8.66334 37.3662 11.4517 40.9315C13.4104 38.3605 15.9367 36.2768 18.8335 34.8432C21.7303 33.4096 24.9192 32.6647 28.1513 32.6668C31.3419 32.6631 34.4912 33.388 37.359 34.7864C40.2268 36.1847 42.7374 38.2195 44.6993 40.7355C46.7211 38.0839 48.0823 34.989 48.6704 31.7069C49.2586 28.4247 49.0567 25.0497 48.0815 21.8611C47.1063 18.6725 45.3859 15.7619 43.0625 13.3702C40.7391 10.9786 37.8796 9.1745 34.7206 8.10735C31.5615 7.0402 28.1938 6.74063 24.896 7.23343C21.5982 7.72624 18.4652 8.99724 15.7561 10.9413C13.0471 12.8853 10.8399 15.4465 9.31721 18.413C7.79452 21.3794 7.0001 24.6658 6.99967 28.0002ZM27.9997 49.0002C23.1788 49.008 18.5033 47.3495 14.765 44.3055C16.2696 42.1509 18.2725 40.3918 20.6032 39.1779C22.9339 37.964 25.5234 37.3312 28.1513 37.3335C30.7464 37.3312 33.3046 37.9482 35.6133 39.1332C37.922 40.3182 39.9147 42.037 41.4257 44.1468C37.6584 47.2898 32.9058 49.0078 27.9997 49.0002Z" fill="white"/></svg>`;
+
+    const systemIconSVG = `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.32692 41.2629C5.03467 39.049 3.2063 36.4007 1.94848 33.4726C0.690667 30.5445 0.0285978 27.3953 0.000906162 24.2085C-0.0267854 21.0218 0.580455 17.8615 1.7872 14.912C2.99394 11.9625 4.77601 9.28286 7.02944 7.02944C9.28286 4.77601 11.9625 2.99394 14.912 1.7872C17.8615 0.580455 21.0218 -0.0267854 24.2085 0.000906162C27.3953 0.0285978 30.5445 0.690667 33.4726 1.94848C36.4007 3.2063 39.049 5.03467 41.2629 7.32692C45.6347 11.8534 48.0538 17.9158 47.9991 24.2085C47.9444 30.5013 45.4204 36.5208 40.9706 40.9706C36.5208 45.4204 30.5013 47.9444 24.2085 47.9991C17.9158 48.0538 11.8534 45.6347 7.32692 41.2629ZM37.8789 37.8789C41.4816 34.2762 43.5056 29.3899 43.5056 24.2949C43.5056 19.1999 41.4816 14.3136 37.8789 10.7109C34.2762 7.10822 29.3899 5.08424 24.2949 5.08424C19.1999 5.08424 14.3136 7.10822 10.7109 10.7109C7.10822 14.3136 5.08424 19.1999 5.08424 24.2949C5.08424 29.3899 7.10822 34.2762 10.7109 37.8789C14.3136 41.4816 19.1999 43.5056 24.2949 43.5056C29.3899 43.5056 34.2762 41.4816 37.8789 37.8789ZM21.8949 12.2949H26.6949V26.6949H21.8949V12.2949ZM21.8949 31.4949H26.6949V36.2949H21.8949V31.4949Z" fill="white"/></svg>`;
+
+    const dummyMessages = [
+      { sender: "Dr. Ravek", preview: "Good afternoon...", time: "08:56 PM", type: "doctor", unread: false },
+      { sender: "System", preview: "You have an appointment at...", time: "08:56 PM", type: "system", unread: true },
+      { sender: "Dr. Clara", preview: "Please check your prescription...", time: "Yesterday", type: "doctor", unread: false },
+      { sender: "System", preview: "Queue reminder for Dr. Ravek", time: "Monday", type: "system", unread: false }
+    ];
+
+    function renderMessages() {
+      const container = document.getElementById('messages-list');
+      container.innerHTML = '';
+      
+      dummyMessages.forEach((msg, index) => {
+        const item = document.createElement('a');
+        item.href = "#"; // Replace with actual message detail link
+        item.className = 'message-item ' + (index % 2 === 0 ? 'message-item--odd' : 'message-item--even');
+        
+        // Icon Wrapper
+        const iconWrapper = document.createElement('div');
+        iconWrapper.className = 'message-item__icon-wrapper';
+        
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'message-item__icon';
+        iconDiv.innerHTML = msg.type === 'system' ? systemIconSVG : profileIconSVG;
+        iconWrapper.appendChild(iconDiv);
+
+        if (msg.unread) {
+          const unreadDot = document.createElement('div');
+          unreadDot.className = 'message-item__unread-dot';
+          iconWrapper.appendChild(unreadDot);
+        }
+
+        // Content wrapper
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-item__content';
+        
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'message-item__name';
+        nameSpan.textContent = msg.sender;
+        
+        const previewSpan = document.createElement('span');
+        previewSpan.className = 'message-item__preview';
+        previewSpan.textContent = msg.preview;
+        
+        contentDiv.appendChild(nameSpan);
+        contentDiv.appendChild(previewSpan);
+
+        // Time
+        const timeSpan = document.createElement('span');
+        timeSpan.className = 'message-item__time';
+        timeSpan.textContent = msg.time;
+
+        item.appendChild(iconWrapper);
+        item.appendChild(contentDiv);
+        item.appendChild(timeSpan);
+        
+        container.appendChild(item);
+      });
+    }
+    renderMessages();
+  </script>
+</body>
+</html>
