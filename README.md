@@ -24,11 +24,11 @@ Proyek ini dibuat untuk mengimplementasikan konsep-konsep Software Engineering d
 
 | No | Nama                           |
 |----|--------------------------------|
-| 1  | Raziq Rabbani Utama            |
-| 2  | Muhammad Zahran Al Pasha       |
+| 1  | [Raziq Rabbani Utama](https://github.com/razeequtama)            |
+| 2  | [Muhammad Zahran Al Pasha](https://github.com/Zahran-AL)       |
 | 3  | Muhammad Fatih Rafa Raditya    |
 | 4  | Jonathan Farrel Christian      |
-| 5  | Ecclesiates Natarios Sihombing |
+| 5  | [Ecclesiates Natarios Sihombing](https://github.com/ecclesyia) |
 
 ---
 
